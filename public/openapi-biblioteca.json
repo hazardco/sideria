@@ -1,0 +1,687 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "0.1.0",
+        "title": "Biblioteca - cursospringmedio2024"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Servidor local de desarrollo"
+        }
+    ],
+    "tags": [
+        {
+            "name": "prestamos",
+            "description": "Gestión de Préstamos"
+        },
+        {
+            "name": "socios",
+            "description": "Gestión de Socios"
+        },
+        {
+            "name": "libros",
+            "description": "Gestión de Libros"
+        }
+    ],
+    "paths": {
+        "/socios": {
+            "get": {
+                "summary": "Listado de Socios en la aplicación",
+                "operationId": "listarSocios",
+                "tags": [
+                    "socios"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado completo de Socios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SocioSummary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear",
+                "operationId": "crear",
+                "tags": [
+                    "socios"
+                ],
+                "requestBody": {
+                    "description": "Crear una nueva  en la Aplicación",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SocioCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Consejería creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SocioDetail"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "La información ofrecida es incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorObject"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros": {
+            "get": {
+                "summary": "Listado de Libros en la aplicación",
+                "operationId": "listarLibros",
+                "tags": [
+                    "libros"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado completo de Libros",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LibroSummary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear Libro",
+                "operationId": "crearLibro",
+                "tags": [
+                    "libros"
+                ],
+                "requestBody": {
+                    "description": "Crear una nueva Libro en la Aplicación",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LibroCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Consejería creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LibroDetail"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "La información ofrecida es incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorObject"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/prestamos": {
+            "get": {
+                "summary": "Listado de Prestamos en la aplicación",
+                "operationId": "listarPrestamos",
+                "tags": [
+                    "prestamos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado completo de Prestamos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PrestamoSummary"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear Prestamo",
+                "operationId": "crearPrestamo",
+                "tags": [
+                    "prestamos"
+                ],
+                "requestBody": {
+                    "description": "Crear una nueva Prestamo en la Aplicación",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PrestamoCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Consejería creada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PrestamoDetail"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "La información ofrecida es incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorObject"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "El usuario no está autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "El usuario no tiene permisos para acceder a este recurso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoAuthError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/prestamos/{id}": {
+            "delete": {
+                "summary": "Finalizar Préstamo",
+                "operationId": "devolverPrestamo",
+                "tags": [
+                    "prestamos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "description": "El ID del préstamo a marcar como devuelto"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Préstamo marcado como devuelto correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PrestamoDetail"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Préstamo no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorObject"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "JWT": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            },
+            "Profile": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Profile"
+            },
+            "User": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Jwt-User"
+            }
+        },
+        "responses": {
+            "400_BadRequest": {
+                "description": "La información ofrecida es incorrecta",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorObject"
+                        }
+                    }
+                }
+            },
+            "401_Unauthorized": {
+                "description": "El usuario no está autenticado",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/NoAuthError"
+                        }
+                    }
+                }
+            },
+            "403_Forbidden": {
+                "description": "El usuario no está autenticado",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/NoAuthError"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "NoAuthError": {
+                "description": "Cuando el usuario no está logueado(AUTHenticate) o no tiene permisos (AUTHorization)",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ErrorMessage": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ErrorObject": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer"
+                    },
+                    "error": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "example": {
+                            "nombre": "No puede ser nulo",
+                            "descripcion": "Longitud debe estar entre 1 y 2048"
+                        }
+                    }
+                }
+            },
+            "SociosListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SocioSummary"
+                        }
+                    }
+                }
+            },
+            "SocioDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/SocioDetail"
+                    }
+                }
+            },
+            "SocioSummary": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "perfil": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SocioDetail": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "perfil": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SocioCreate": {
+                "type": "object",
+                "required": [
+                    "nombre",
+                    "perfil",
+                    "fecha_nacimiento",
+                    "email"
+                ],
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "perfil": {
+                        "type": "string"
+                    },
+                    "fecha_nacimiento": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LibrosListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LibroSummary"
+                        }
+                    }
+                }
+            },
+            "LibroDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/LibroDetail"
+                    }
+                }
+            },
+            "LibroSummary": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LibroDetail": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LibroCreate": {
+                "type": "object",
+                "required": [
+                    "nombre"
+                ],
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 60
+                    }
+                }
+            },
+            "PrestamosListResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PrestamoSummary"
+                        }
+                    }
+                }
+            },
+            "PrestamoDetailResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/PrestamoDetail"
+                    }
+                }
+            },
+            "PrestamoSummary": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "socio": {
+                        "$ref": "#/components/schemas/SocioDetail"
+                    },
+                    "libro": {
+                        "$ref": "#/components/schemas/LibroDetail"
+                    },
+                    "expiraEn": {
+                        "type": "date"
+                    },
+                    "devueltoEn": {
+                        "type": "date"
+                    }
+                }
+            },
+            "PrestamoDetail": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "socio": {
+                        "$ref": "#/components/schemas/SocioDetail"
+                    },
+                    "libro": {
+                        "$ref": "#/components/schemas/LibroDetail"
+                    },
+                    "expiraEn": {
+                        "type": "date"
+                    },
+                    "devueltoEn": {
+                        "type": "date"
+                    }
+                }
+            },
+            "PrestamoCreate": {
+                "type": "object",
+                "required": [
+                    "socio_id",
+                    "libro_id"
+                ],
+                "properties": {
+                    "socio_id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "libro_id": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            }
+        }
+    }
+}

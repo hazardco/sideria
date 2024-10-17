@@ -4,7 +4,7 @@ import { fetchSwaggerData, setApiServerUrl } from "../../../redux/automatorSlice
 
 const Automator = () => {
 
-    const [url, setUrl] = useState("")
+    const [url, setUrl] = useState("http://localhost:5173/openapi-biblioteca.json")
 
     const dispatch = useDispatch()
     const endPoints = useSelector((state) => state.automator.endPoints)
