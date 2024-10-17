@@ -1,8 +1,19 @@
-# React + Vite
+# Siderai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El objetivo de este proyecto es montar un entorno en el cual, pasando una especificacion de openapi, se genere una página web con la que el usuario pueda interactuar
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Instalar dependencias
+
+```sh
+yarn
+```
+
+## Arrancar el proyecto
+
+```sh
+yarn dev
+```
+
+El terminal te indicará donde se ha arracando, normalmente `http://localhost:5173/`
