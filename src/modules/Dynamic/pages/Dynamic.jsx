@@ -30,7 +30,7 @@ const Dynamic = () => {
             throw new Error("Failed to fetch data");
           }
           const data = await response.json();
-          setTableData(data);
+          setTableData(data["results"]);
         } catch (error) {
           console.error("Error fetching data:", error);
         } finally {
