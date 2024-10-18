@@ -3,10 +3,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 // Acción asíncrona para obtener datos de Swagger
 export const fetchSwaggerData = createAsyncThunk(
     'automator/fetchSwaggerData',
-    async (swaggerUrl) => {
+    async (swaggerUrl, thunkAPI) => {
         const response = await fetch(swaggerUrl)
         const swaggerData = await response.json()
         const extractedEndpoints = []
+        
+        // Pongo el ApiServerUrl que venga en el swagger y no la url origen del fichero
+        if (swaggerData.servers && swaggerData.servers.length > 0) {
+            const serverUrl = swaggerData.servers[0].url; 
+            thunkAPI.dispatch(setApiServerUrl(serverUrl)); 
+        }
 
         const extractSchema = (schema, swaggerData) => {
             if (schema.$ref) {

@@ -15,7 +15,6 @@ const Automator = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        dispatch(setApiServerUrl(new URL(url).origin))
         dispatch(fetchSwaggerData(url))
     }
 
